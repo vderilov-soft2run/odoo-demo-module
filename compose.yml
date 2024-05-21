@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  odoo:
+    entrypoint: ./odoo-bin --addons-path="addons,addons_demo,enterprise" -r odoo -w mysecretpassword -d odoo --db_host db --dev=reload --log-level debug
+    build: .
+    ports:
+      - "8069:8069"
+    depends_on:
+      - db
+    volumes:
+      - type: bind
+        source: ./
+        target: /odoo
+    environment:
+      - PGHOST=db
+      - PGDATABASE=odoo
+      - PGUSER=odoo
+      - PGPASSWORD=mysecretpassword
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=odoo
+    # volumes:
+    #   - /usr/local/var/postgresql@13
+volumes:
+  odoo-volume:
