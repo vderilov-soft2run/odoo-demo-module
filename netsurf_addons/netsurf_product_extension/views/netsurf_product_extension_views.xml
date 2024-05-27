@@ -1,0 +1,26 @@
+<odoo>
+    <!-- Define a new menu for Netsurf Products if necessary -->
+    <!-- <menuitem id="menu_netsurf_product_extension_root" name="Netsurf Products" sequence="10"/> -->
+    
+    <!-- Define a submenu for Product Extensions if necessary
+    <menuitem id="menu_netsurf_product_extension" name="Product Extensions"
+              parent="menu_netsurf_product_extension_root" sequence="10"
+              action="action_netsurf_product_extension"/> -->
+
+    <!-- Inherit the product template form view used in the Inventory module -->
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']" position="inside">
+                <group>
+                    <field name="device_type"/>
+                    <field name="service_type"/>
+                    <field name="create_ticket"/>
+                    <field name="service_speed"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
