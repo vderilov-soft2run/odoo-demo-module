@@ -8,6 +8,7 @@ from dateutil.relativedelta import relativedelta
 class Property(models.Model):
     _name = "estate.property"
     _description = "Property model"
+    _order = "id desc"
     _sql_constraints = [
         (
             "check_expected_price",
@@ -98,6 +99,12 @@ class Property(models.Model):
             self.garden_area = 0
             self.garden_orientation = None
 
+    @api.onchange("offer_ids")
+    def _onchange_offer_ids(self):
+        for record in self:
+            if len(record.offer_ids) and record.state == "new":
+                record.state = "recieved"
+
     def action_sold(self):
         for record in self:
             if record.state == "canceled":
@@ -115,6 +122,7 @@ class Property(models.Model):
 
 class PropertyOffer(models.Model):
     _name = "estate.property.offer"
+    _order = "price desc"
     _sql_constraints = [
         (
             "check_price",

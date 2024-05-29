@@ -34,6 +34,7 @@
                     <header>
                         <button name="action_sold" type="object" string="Sold"/>
                         <button name="action_cancel" type="object" string="Cancel"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,recieved,accepted,sold"/>
                     </header>
                     <sheet>
                         <div>
@@ -122,8 +123,9 @@
             <field name="name">estate.property.type.tree</field>
             <field name="model">estate.property.type</field>
             <field name="arch" type="xml">
-                <tree string="Channel">
+                <tree>
                     <field name="name"/>
+                    <field name="sequence" widget="handle"/>
                 </tree>
             </field>
         </record>
@@ -142,6 +144,17 @@
                                 <field name="name" class="mb16"/>
                             </h1>
                         </div>
+                        <notebook>
+                            <page string="Properties">                            
+                                <field name="property_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="expected_price"/>
+                                        <field name="state"/>    
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

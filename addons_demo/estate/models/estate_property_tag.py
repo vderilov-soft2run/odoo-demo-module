@@ -2,6 +2,7 @@ from odoo import fields, models
 
 class PropertyTag(models.Model):
     _name = 'estate.property.tag'
+    _order = 'name'
     _sql_constraints = [
         (
             "check_name",
