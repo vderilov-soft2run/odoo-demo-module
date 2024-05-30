@@ -1,11 +1,13 @@
 stages:
   - build
+  - deploy
 
 variables:
   REGISTRY: registry.gitlab.com
   GROUP: netsurfbg/billing
   SERVICE: odoo
   TAG: <tag>
+  STACK: <stack>
 
 build-project:
   stage: build
@@ -27,5 +29,32 @@ build-project:
     - development
     - main
 
+  tags:
+    - odoo-dev
+
+deploy-project:
+  stage: deploy
+
+  script:
+    - if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
+        TAG="stage";
+        STACK="odoo-stage";
+      elif [[ "$CI_COMMIT_BRANCH" == "development" ]]; then
+        TAG="latest";
+        STACK="odoo-dev";
+      fi
+
+    - echo "Pull Docker Image (if not built locally)"
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker pull ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE}:$TAG
+
+    - echo "Update Service with new image"
+    - docker service update --force ${STACK}_${SERVICE}
+    - docker image prune -af
+
+  only:
+    - development
+    - main
+  
   tags:
     - odoo-dev
