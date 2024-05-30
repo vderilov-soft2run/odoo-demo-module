@@ -1,0 +1,31 @@
+stages:
+  - build
+
+variables:
+  REGISTRY: registry.gitlab.com
+  GROUP: netsurfbg/billing
+  SERVICE: odoo
+  TAG: <tag>
+
+build-project:
+  stage: build
+
+  script:
+    - if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
+        TAG="stage";
+      elif [[ "$CI_COMMIT_BRANCH" == "development" ]]; then
+        TAG="latest";     
+      fi
+
+    - echo "Build and Push docker images."
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build . -t ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE}:$TAG
+    - echo "Push to Registry"
+    - docker push ${REGISTRY}/${GROUP}/${SERVICE}/${SERVICE}:$TAG
+
+  only:
+    - development
+    - main
+
+  tags:
+    - odoo-dev
