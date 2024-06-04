@@ -19,7 +19,7 @@ class NetsurfProductTemplate(models.Model):
         copy = True,
     )
     
-    service_type = fields.Selection(
+    netsurf_service_type = fields.Selection(
         selection=[
             ('internet_main', 'Internet main service'),
             ('internet_addon', 'Internet add-on'),

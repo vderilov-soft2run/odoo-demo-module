@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "netsurf_product_extension",
+    'name': "Netsurf Product Extension",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': "This module extends existing Odoo functionality to serve Netsurf's business requirements",
 
     'description': """
 Long description of module's purpose
@@ -15,15 +15,16 @@ Long description of module's purpose
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1',
+    'version': '0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['stock'],
+    'depends': ['base', 'stock', 'sale_management', 'purchase', 'helpdesk', 'industry_fsm'],
 
     # always loaded
+    # security will be implemented once new non-inherited models are defined for netsurf.
     'data': [
         # 'security/ir.model.access.csv',
-        # 'data/data.xml',
+        # 'data/data.xml', 
         'views/netsurf_product_extension_views.xml',
     ],
     # only loaded in demonstration mode
