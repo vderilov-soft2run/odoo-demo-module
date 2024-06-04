@@ -15,7 +15,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='group_general']" position="inside">
                 <field name="device_type"/>
-                <field name="service_type"/>
+                <field name="netsurf_service_type"/>
                 <field name="create_ticket"/>
                 <field name="service_speed"/>
             </xpath>
