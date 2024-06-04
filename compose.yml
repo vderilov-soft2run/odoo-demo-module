@@ -14,7 +14,7 @@ services:
       - odoo-volume:/home/odoo_adm/data/
     environment:
       - PGHOST=db
-      - PGDATABASE=odoo
+      - PGDATABASE=odoo-vasil
       - PGUSER=odoo
       - PGPASSWORD=mysecretpassword
   db:

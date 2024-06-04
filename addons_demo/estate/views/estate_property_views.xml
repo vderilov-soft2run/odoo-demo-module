@@ -12,15 +12,42 @@
             <field name="model">estate.property</field>
             <field name="arch" type="xml">
                 <tree string="Channel">
-                    <field name="name"/>
-                    <field name="postcode"/>
-                    <field name="bedrooms"/>
-                    <field name="living_area"/>
-                    <field name="expected_price"/>
-                    <field name="selling_price"/>
-                    <field name="date_available"/>
-                    <field name="property_type_id" string="Property Type"/>
-                    <field name="property_tag_ids" string="Tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field decoration-success="state in ['accepted', 'recieved']" 
+                        decoration-bf="state == 'accepted'" 
+                        decoration-muted="state == 'sold'"
+                        name="name"/>
+                    <field decoration-success="state in ['accepted', 'recieved']" 
+                        decoration-bf="state == 'accepted'" 
+                        decoration-muted="state == 'sold'"
+                        name="postcode"/>
+                    <field decoration-success="state in ['accepted', 'recieved']" 
+                        decoration-bf="state == 'accepted'" 
+                        decoration-muted="state == 'sold'"
+                        name="bedrooms"/>
+                    <field decoration-success="state in ['accepted', 'recieved']" 
+                        decoration-bf="state == 'accepted'" 
+                        decoration-muted="state == 'sold'"
+                        name="living_area"/>
+                    <field decoration-success="state in ['accepted', 'recieved']" 
+                        decoration-bf="state == 'accepted'" 
+                        decoration-muted="state == 'sold'"
+                        name="expected_price"/>
+                    <field decoration-success="state in ['accepted', 'recieved']" 
+                        decoration-bf="state == 'accepted'" 
+                        decoration-muted="state == 'sold'"
+                        name="selling_price"/>
+                    <field decoration-success="state in ['accepted', 'recieved']" 
+                        decoration-bf="state == 'accepted'" 
+                        decoration-muted="state == 'sold'"
+                        name="date_available" optional="1"/>
+                    <field decoration-success="state in ['accepted', 'recieved']" 
+                        decoration-bf="state == 'accepted'" 
+                        decoration-muted="state == 'sold'"
+                        name="property_type_id" string="Property Type"/>
+                    <field name="property_tag_ids" 
+                        string="Tags" widget="many2many_tags" 
+                        options="{'color_field': 'color'}"/>
+                    <field invisible="1" optional="True" name="state"/>
                 </tree>
             </field>
         </record>
@@ -103,7 +130,9 @@
                     <field name="postcode"/>
                     <field name="expected_price"/>
                     <field name="bedrooms"/>
-                    <field string="Living Area (sqm)" name="living_area"/>
+                    <field string="Living Area (sqm)" 
+                        name="living_area"
+                        filter_domain="[('living_area', '>=', self)]"/>
                     <field name="facades"/>
                     <field name="property_type_id" string="Property Type"/>
                     <separator/>
@@ -138,6 +167,15 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
+                        <div name="button_box" class="oe_button_box">
+                            <button class="oe_stat_button" type="action"
+                                    name="test" icon="fa-book"
+                                    context="{}">
+                                    <div class="o_stat_info">
+                                        <span class="o_stat_text">Journal Entries</span>
+                                    </div>
+                            </button>
+                        </div>
                         <div>
                             <div>
                                 <label for="name"/>
@@ -184,10 +222,11 @@
             <field name="model">estate.property.offer</field>
             <field name="arch" type="xml">
                 <tree editable="top" string="Channel">
-                    <field name="price"/>
-                    <field name="partner_id"/>
-                    <field name="validity"/>
-                    <field name="date_deadline"/>
+                    <field decoration-danger="status == 'refused'" decoration-success="status == 'accepted'" name="price"/>
+                    <field decoration-danger="status == 'refused'" decoration-success="status == 'accepted'" name="partner_id"/>
+                    <field decoration-danger="status == 'refused'" decoration-success="status == 'accepted'" name="validity"/>
+                    <field decoration-danger="status == 'refused'" decoration-success="status == 'accepted'" name="date_deadline"/>
+                    <field name="status" invisible="1"/>
                     <button name="action_confirm" title="confirm" type="object" icon="fa-check" invisible="status"/>
                     <button name="action_decline" title="decline" type="object" icon="fa-times" invisible="status"/>
                 </tree>
