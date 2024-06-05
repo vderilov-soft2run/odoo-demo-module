@@ -6,23 +6,24 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='detailed_type']" position="after">
-                <field name="device_type" invisible="type != 'product'"/>
-                <field name="netsurf_service_type" invisible="type != 'service'"/>
-                <field name="service_speed" invisible="type != 'service'"/>
+                <field name="device_type" required="1" invisible="type != 'product'"/>
+                <field name="netsurf_service_type" required="1" invisible="type != 'service'"/>
+                <field name="service_speed" required="1" invisible="type != 'service'"/>
             </xpath>
-        </field>
-    </record>
-
-    <record id="product_template_form_view" model="ir.ui.view">
-        <field name="name">product.template.form.view.inherit.sale</field>
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
-        <field name="arch" type="xml">
             <field name="service_tracking" position="after">
                 <field name="create_ticket"/>
             </field>
         </field>
     </record>
+
+    <!-- <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.view.inherit.sale</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            
+        </field>
+    </record> -->
 
     <!-- Custom Tree View for Product Template -->
     <record id="view_product_template_tree_custom" model="ir.ui.view">
