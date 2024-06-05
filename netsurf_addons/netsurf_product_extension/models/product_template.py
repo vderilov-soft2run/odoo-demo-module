@@ -61,15 +61,15 @@ class NetsurfProductTemplate(models.Model):
                 record._fields['device_type'].required = False
 
             if record.type == 'service':
-                record.service_type = record.service_type or 'internet_main'
-                record._fields['service_type'].required = True
+                record.netsurf_service_type = record.netsurf_service_type or 'internet_main'
+                record._fields['netsurf_service_type'].required = True
             else:
-                record._fields['service_type'].required = False
+                record._fields['netsurf_service_type'].required = False
 
-    @api.onchange('service_type')
+    @api.onchange('netsurf_service_type')
     def _onchange_service_type(self):
         for record in self:
-            if record.service_type != 'other_services':
+            if record.netsurf_service_type != 'other_services':
                 record._fields['service_speed'].required = True
             else:
                 record._fields['service_speed'].required = False
