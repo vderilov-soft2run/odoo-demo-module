@@ -18,7 +18,7 @@ Long description of module's purpose
     'version': '0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'stock', 'sale_management', 'purchase', 'helpdesk', 'industry_fsm'],
+    'depends': ['base', 'stock', 'sale_management', 'sale_project', 'purchase', 'helpdesk', 'industry_fsm'],
 
     # always loaded
     # security will be implemented once new non-inherited models are defined for netsurf.

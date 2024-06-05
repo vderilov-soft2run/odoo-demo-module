@@ -1,24 +1,68 @@
 <odoo>
-    <!-- Define a new menu for Netsurf Products if necessary -->
-    <!-- <menuitem id="menu_netsurf_product_extension_root" name="Netsurf Products" sequence="10"/> -->
-    
-    <!-- Define a submenu for Product Extensions if necessary
-    <menuitem id="menu_netsurf_product_extension" name="Product Extensions"
-              parent="menu_netsurf_product_extension_root" sequence="10"
-              action="action_netsurf_product_extension"/> -->
-
-    <!-- Inherit the product template form view used in the Inventory module -->
+    <!-- Inherit the product template form view used in the Inventory module and add new fields-->
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="name">product.template.form.inherit</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='group_general']" position="inside">
+            <xpath expr="//field[@name='detailed_type']" position="after">
+                <field name="device_type" invisible="type != 'product'"/>
+                <field name="netsurf_service_type" invisible="type != 'service'"/>
+                <field name="service_speed" invisible="type != 'service'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.view.inherit.sale</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="service_tracking" position="after">
+                <field name="create_ticket"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Custom Tree View for Product Template -->
+    <record id="view_product_template_tree_custom" model="ir.ui.view">
+        <field name="name">product.template.tree.custom</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <!-- Add Device Type, Netsurf Service Type, and Service Speed to the product list view -->
+            <xpath expr="//field[@name='default_code']" position="after">
                 <field name="device_type"/>
                 <field name="netsurf_service_type"/>
-                <field name="create_ticket"/>
                 <field name="service_speed"/>
             </xpath>
+        </field>
+    </record>
+
+    <!-- Custom search view for Product Template -->
+    <record id="view_product_template_search_custom" model="ir.ui.view">
+        <field name="name">product.template.search.custom</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+
+        <!-- Add custom filters -->
+        <filter name="filter_to_purchase" position="after">
+            <separator/>
+            <filter name="filter_internet_services" string="Internet Services"  domain="[('netsurf_service_type', 'in', ['internet_main', 'internet_addon'])]"/>
+            <filter name="filter_tv_services" string="TV Services" domain="[('netsurf_service_type', 'in', ['tv_main', 'tv_addon'])]"/>
+            <filter name="filter_service_packs" string="Service Packs" domain="[('netsurf_service_type', '=', 'service_pack')]"/>
+            <filter name="filter_man_services" string="MAN Services" domain="[('netsurf_service_type', '=', 'man_service')]"/>
+            <separator/>
+            <filter name="filter_ont" string="ONT" domain="[('device_type', '=', 'ont')]"/>
+            <filter name="filter_stb" string="STB" domain="[('device_type', '=', 'stb')]"/>
+        </filter>
+
+        <!-- Add custom groups -->
+        <xpath expr="//filter[@name='type']" position="after">
+            <filter string="Device Type" name="filter_device_type" context="{'group_by':'device_type'}"/>
+            <filter string="Service Type" name="filter_service_type" context="{'group_by':'netsurf_service_type'}"/>
+        </xpath>
         </field>
     </record>
 </odoo>
