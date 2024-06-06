@@ -10,7 +10,7 @@
                 <field name="netsurf_service_type" invisible="type != 'service'"/>
                 <field name="service_speed" invisible="type != 'service'"/>
             </xpath>
-            <field name="service_tracking" position="after">
+            <field name="uom_id" position="before">
                 <field name="create_ticket"/>
             </field>
         </field>
