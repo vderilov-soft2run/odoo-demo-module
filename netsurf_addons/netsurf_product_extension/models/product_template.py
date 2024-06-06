@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class NetsurfProductTemplate(models.Model):
     _inherit = 'product.template'
     
-    device_type = fields.Selection(
+    netsurf_device_type = fields.Selection(
         selection=[
             ('ont', 'ONT'),
             ('stb', 'STB'),
@@ -14,7 +15,6 @@ class NetsurfProductTemplate(models.Model):
             ('other_materials', 'Other materials')
         ],
         string = "Device type",
-        required = False,
         store = True,
         copy = True,
     )
@@ -30,7 +30,6 @@ class NetsurfProductTemplate(models.Model):
             ('other_services', 'Other Services'),
         ],
         string='Service type',
-        required=False,
         store=True,
         copy=True,
     )
@@ -51,20 +50,6 @@ class NetsurfProductTemplate(models.Model):
         digits=(16, 0),
     )
     
-    @api.onchange('type')
-    def _onchange_product_type(self):
-        for record in self:
-            if record.type == 'product':
-                record.device_type = record.device_type or 'ont'
-                record._fields['device_type'].required = True
-            else:
-                record._fields['device_type'].required = False
-
-            if record.type == 'service':
-                record.netsurf_service_type = record.netsurf_service_type or 'internet_main'
-                record._fields['netsurf_service_type'].required = True
-            else:
-                record._fields['netsurf_service_type'].required = False
 
     @api.onchange('netsurf_service_type')
     def _onchange_service_type(self):
@@ -73,3 +58,15 @@ class NetsurfProductTemplate(models.Model):
                 record._fields['service_speed'].required = True
             else:
                 record._fields['service_speed'].required = False
+                
+    @api.constrains('netsurf_device_type')
+    def _check_device_type(self):
+        for record in self:
+            if record.type == 'product' and not record.netsurf_device_type:
+                    raise ValidationError("Field Device Type is required. Please select the appropriate option.")
+
+    @api.constrains('netsurf_service_type')
+    def _check_required_fields(self):
+        for record in self:
+            if record.type == 'service' and not record.netsurf_service_type:
+                raise ValidationError("Field Service Type is required. Please select the appropriate option.")
