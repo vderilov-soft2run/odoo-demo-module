@@ -22,9 +22,11 @@ RUN apt-get install -y python3-dev libxml2-dev \
 RUN useradd -ms /bin/bash odoo_adm
 USER odoo_adm
 
-COPY ./ /odoo/
+COPY ./ /home/odoo_adm/odoo/
 
-WORKDIR /odoo/
+WORKDIR /home/odoo_adm/odoo/
+
+RUN mkdir /home/odoo_adm/data
 
 RUN pip install -r requirements.txt
 
