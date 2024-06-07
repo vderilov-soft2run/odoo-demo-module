@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-29 13:11+0000\n"
-"PO-Revision-Date: 2024-05-29 13:34+0000\n"
+"POT-Creation-Date: 2024-06-07 07:33+0000\n"
+"PO-Revision-Date: 2024-06-07 07:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: Unknown\n"
 "Language: zxx\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__device_type__cables
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_device_type__cables
 msgid "Cables"
 msgstr "Кабели"
 
@@ -28,9 +28,14 @@ msgid "Create a ticket"
 msgstr "Създава тикет"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_product__device_type
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "Device Type"
+msgstr "Тип устройство"
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_product__netsurf_device_type
 #:  
-#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_template__device_type
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_template__netsurf_device_type
 msgid "Device type"
 msgstr "Тип устройство"
 
@@ -40,35 +45,47 @@ msgstr "Тип устройство"
 #: model:ir.model.fields,help:netsurf_product_extension.field_product_template__create_ticket
 msgid "If set to true, Odoo will create a ticket on Sales Order confirmation."
 msgstr ""
-"Ако полето е избрано, Odoo ще създаде тикет при потвърждение на поръчка."
+"Ако полето е избрано, Odoo ще създаде тикет при потвърждение на поръчка"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__service_type__internet_addon
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "Internet Services"
+msgstr "Интернет услуги"
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__internet_addon
 msgid "Internet add-on"
 msgstr "Интернет допълнителна услуга"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__service_type__internet_main
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__internet_main
 msgid "Internet main service"
 msgstr "Интернет главна услуга"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__service_type__man_service
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "MAN Services"
+msgstr "МАН услуги"
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__man_service
 msgid "MAN service"
 msgstr "МАН услуга"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__device_type__ont
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_device_type__ont
+#:  
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
 msgid "ONT"
 msgstr "ONT"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__service_type__other_services
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__other_services
 msgid "Other Services"
 msgstr "Други услуги"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__device_type__other_materials
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_device_type__other_materials
 msgid "Other materials"
 msgstr "Други материали"
 
@@ -78,14 +95,26 @@ msgid "Product"
 msgstr "Продукт"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__device_type__stb
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_device_type__stb
+#:  
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
 msgid "STB"
 msgstr "STB"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__service_type__service_pack
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__service_pack
 msgid "Service Pack"
 msgstr "Пакет"
+
+#. module: netsurf_product_extension
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "Service Packs"
+msgstr "Пакети"
+
+#. module: netsurf_product_extension
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "Service Type"
+msgstr "Вид услуга"
 
 #. module: netsurf_product_extension
 #: model:ir.model.fields,field_description:netsurf_product_extension.field_product_product__service_speed
@@ -95,18 +124,23 @@ msgid "Service speed"
 msgstr "Скорост на услугата"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_product__service_type
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_product__netsurf_service_type
 #:  
-#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_template__service_type
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_template__netsurf_service_type
 msgid "Service type"
 msgstr "Вид услуга"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__service_type__tv_addon
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "TV Services"
+msgstr "ТВ услуги"
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__tv_addon
 msgid "TV add-on"
 msgstr "ТВ допълнителна услуга"
 
 #. module: netsurf_product_extension
-#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__service_type__tv_main
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__tv_main
 msgid "TV main service"
 msgstr "ТВ основна услуга"
