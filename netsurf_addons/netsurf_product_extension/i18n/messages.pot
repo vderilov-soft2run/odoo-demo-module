@@ -1,0 +1,138 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* netsurf_product_extension
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-07 07:33+0000\n"
+"PO-Revision-Date: 2024-06-07 07:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_device_type__cables
+msgid "Cables"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_product__create_ticket
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_template__create_ticket
+msgid "Create a ticket"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "Device Type"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_product__netsurf_device_type
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_template__netsurf_device_type
+msgid "Device type"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields,help:netsurf_product_extension.field_product_product__create_ticket
+#: model:ir.model.fields,help:netsurf_product_extension.field_product_template__create_ticket
+msgid "If set to true, Odoo will create a ticket on Sales Order confirmation."
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "Internet Services"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__internet_addon
+msgid "Internet add-on"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__internet_main
+msgid "Internet main service"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "MAN Services"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__man_service
+msgid "MAN service"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_device_type__ont
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "ONT"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__other_services
+msgid "Other Services"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_device_type__other_materials
+msgid "Other materials"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model,name:netsurf_product_extension.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_device_type__stb
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "STB"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__service_pack
+msgid "Service Pack"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "Service Packs"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "Service Type"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_product__service_speed
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_template__service_speed
+msgid "Service speed"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_product__netsurf_service_type
+#: model:ir.model.fields,field_description:netsurf_product_extension.field_product_template__netsurf_service_type
+msgid "Service type"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model_terms:ir.ui.view,arch_db:netsurf_product_extension.view_product_template_search_custom
+msgid "TV Services"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__tv_addon
+msgid "TV add-on"
+msgstr ""
+
+#. module: netsurf_product_extension
+#: model:ir.model.fields.selection,name:netsurf_product_extension.selection__product_template__netsurf_service_type__tv_main
+msgid "TV main service"
+msgstr ""
