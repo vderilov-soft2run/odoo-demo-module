@@ -21,15 +21,9 @@ Long description of module's purpose
     'depends': ['base', 'stock', 'sale_management', 'sale_project', 'purchase', 'helpdesk', 'industry_fsm'],
 
     # always loaded
-    # security will be implemented once new non-inherited models are defined for netsurf.
     'data': [
-        # 'security/ir.model.access.csv',
-        # 'data/data.xml', 
         'views/netsurf_product_extension_views.xml',
-    ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+        'security/ir.model.access.csv'
+    ]
 }
 
