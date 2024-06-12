@@ -58,15 +58,20 @@ class NetsurfProductTemplate(models.Model):
                 record._fields['service_speed'].required = True
             else:
                 record._fields['service_speed'].required = False
-                
-    @api.constrains('netsurf_device_type')
-    def _check_device_type(self):
-        for record in self:
-            if record.type == 'product' and not record.netsurf_device_type:
-                    raise ValidationError("Field Device Type is required. Please select the appropriate option.")
 
-    @api.constrains('netsurf_service_type')
+    @api.onchange('type')
+    def _onchange_type_clear_values(self):
+        for record in self:
+            if record.type != "product":
+                record.netsurf_device_type = False
+            if record.type != "service":
+                record.netsurf_service_type = False
+                
+    @api.constrains('netsurf_device_type', 'netsurf_service_type')
     def _check_required_fields(self):
         for record in self:
+            if record.type == 'product' and not record.netsurf_device_type:
+                raise ValidationError("Field Device Type is required. Please select the appropriate option.")
+            
             if record.type == 'service' and not record.netsurf_service_type:
                 raise ValidationError("Field Service Type is required. Please select the appropriate option.")
