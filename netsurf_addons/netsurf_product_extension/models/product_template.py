@@ -67,7 +67,7 @@ class NetsurfProductTemplate(models.Model):
             if record.type != "service":
                 record.netsurf_service_type = False
                 
-    @api.constrains('netsurf_device_type', 'netsurf_service_type')
+    @api.constrains('netsurf_device_type', 'netsurf_service_type', 'type')
     def _check_required_fields(self):
         for record in self:
             if record.type == 'product' and not record.netsurf_device_type:
