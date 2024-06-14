@@ -161,6 +161,13 @@
             </field>
         </record>
 
+        <record id="estate_property_offer_action" model="ir.actions.act_window">
+            <field name="name">Offers</field>
+            <field name="res_model">estate.property.offer</field>
+            <field name="domain">[('property_type_id', '=', active_id)]</field>
+            <field name="view_mode">tree</field>
+        </record>
+
         <record id="estate_property_type_view_form" model="ir.ui.view">
             <field name="name">estate.property.type.form</field>
             <field name="model">estate.property.type</field>
@@ -168,11 +175,12 @@
                 <form>
                     <sheet>
                         <div name="button_box" class="oe_button_box">
-                            <button class="oe_stat_button" type="action"
-                                    name="test" icon="fa-book"
-                                    context="{}">
+                            <button class="oe_stat_button" 
+                                    type="action"
+                                    name="%(estate_property_offer_action)d" 
+                                    icon="fa-money">
                                     <div class="o_stat_info">
-                                        <span class="o_stat_text">Journal Entries</span>
+                                        <field name="offer_count" widget="statinfo" string="Offers"/>
                                     </div>
                             </button>
                         </div>

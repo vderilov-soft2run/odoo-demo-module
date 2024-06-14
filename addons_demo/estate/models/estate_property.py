@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+import pprint
 from odoo import fields, models, api, exceptions
 from dateutil.relativedelta import relativedelta
 
@@ -70,6 +71,12 @@ class Property(models.Model):
     salesperson_id = fields.Many2one(
         "res.users", "Salesperson", default=lambda self: self.env.user
     )
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_when_state_invalid(self):
+        for record in self:
+            if (record.state in ['recieved', 'accepted', 'sold']):
+                raise exceptions.UserError("Cannot delete property that isn't new or canceled")
 
     @api.constrains('selling_price', 'expected_price')
     def _check_selling_price(self):
@@ -143,7 +150,18 @@ class PropertyOffer(models.Model):
 
     partner_id = fields.Many2one("res.partner", required=True)
     property_id = fields.Many2one("estate.property", required=True)
-    # property_type_id = fields.One2many(related='property_id.property_type_id')
+    property_type_id = fields.Many2one(related='property_id.property_type_id', stored=True)
+
+    @api.model
+    def create(self, vals):
+        # raise exceptions.UserError(repr(vals))
+        prop = self.env["estate.property"].browse(vals['property_id'])
+        offer_max = max(prop.offer_ids, key=lambda p: p.price)
+
+        if vals['price'] < offer_max.price:
+            raise exceptions.UserError("Cannot create an offer lower than an existing one")
+
+        return super().create(vals)
 
     @api.depends("validity")
     def _compute_date_deadline(self):
@@ -179,6 +197,7 @@ class PropertyOffer(models.Model):
             record.property_id.state = "accepted"
             record.property_id.buyer_id = record.partner_id
             record.property_id.selling_price = record.price
+
 
     def action_decline(self):
         for record in self:
