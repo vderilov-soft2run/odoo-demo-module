@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-import pprint
-from odoo import fields, models, api, exceptions
 from dateutil.relativedelta import relativedelta
+from odoo import fields, models, api, exceptions
 
 
 class Property(models.Model):
@@ -13,12 +12,12 @@ class Property(models.Model):
     _sql_constraints = [
         (
             "check_expected_price",
-            "CHECK(expected_price > 0)",
+            "CHECK(expected_price >= 0)",
             "A property expected price must be strictly positive",
         ),
         (
             "check_selling_price",
-            "CHECK(selling_price > 0)",
+            "CHECK(selling_price >= 0)",
             "A property selling price must be positive",
         ),
     ]
@@ -150,18 +149,23 @@ class PropertyOffer(models.Model):
 
     partner_id = fields.Many2one("res.partner", required=True)
     property_id = fields.Many2one("estate.property", required=True)
-    property_type_id = fields.Many2one(related='property_id.property_type_id', stored=True)
+    property_type_id = fields.Many2one(related='property_id.property_type_id', store=True)
 
     @api.model
-    def create(self, vals):
+    def create(self, vals_list):
         # raise exceptions.UserError(repr(vals))
-        prop = self.env["estate.property"].browse(vals['property_id'])
+        prop = self.env["estate.property"].browse(vals_list['property_id'])
+
+        # If there are no other offers just create the offer
+        if not prop.offer_ids:
+            return super().create(vals_list)
+
         offer_max = max(prop.offer_ids, key=lambda p: p.price)
 
-        if vals['price'] < offer_max.price:
+        if vals_list['price'] < offer_max.price:
             raise exceptions.UserError("Cannot create an offer lower than an existing one")
 
-        return super().create(vals)
+        return super().create(vals_list)
 
     @api.depends("validity")
     def _compute_date_deadline(self):
