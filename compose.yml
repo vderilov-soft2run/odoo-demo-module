@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   odoo:
-    entrypoint: ./odoo-bin --addons-path="addons,enterprise,addons_demo,netsurf_addons,addons_owl_tutorial" -r odoo -w mysecretpassword -d odoo --db_host db -u netsurf_product_extension --data-dir /home/odoo_adm/data/ --dev all
+    entrypoint: ./odoo-bin --addons-path="addons,enterprise,addons_demo,netsurf_addons,tutorial_addons" -r odoo -w mysecretpassword -d odoo --db_host db -u netsurf_product_extension --data-dir /home/odoo_adm/data/ --dev all
     build: .
     ports:
       - "8069:8069"
