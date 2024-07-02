@@ -4,7 +4,40 @@
         <record id="estate_property_action" model="ir.actions.act_window">
             <field name="name">Properties</field>
             <field name="res_model">estate.property</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <record id="estate_property_view_kanban" model="ir.ui.view">
+            <field name="name">estate.property.kanban</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="property_type_id" records_draggable="False">
+                    <field name="state"/>
+                    <template>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <group>
+                                    <h3>
+                                        <b><field name="name"/></b>
+                                    </h3>
+                                    <div>
+                                        Expected Preice: <field name="expected_price"/>
+                                    </div>
+                                    <div t-if="record.state.raw_value == 'recieved'">
+                                        Best Offer: <field name="best_price"/>
+                                    </div>
+                                    <div t-if="record.state.raw_value == 'accepted'">
+                                        Selling Price: <field name="selling_price"/>
+                                    </div>
+                                    <div class="mt-2">
+                                        <field name="property_tag_ids"/>
+                                    </div>
+                                </group>
+                            </div>
+                        </t>
+                    </template>
+                </kanban>
+            </field>
         </record>
 
         <record id="estate_property_view_tree" model="ir.ui.view">

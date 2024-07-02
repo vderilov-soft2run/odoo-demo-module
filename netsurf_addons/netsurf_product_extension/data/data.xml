@@ -1,9 +1,0 @@
-<!-- <odoo>
-    Define an action to open the product template form view
-    <record id="action_netsurf_product_extension" model="ir.actions.act_window">
-        <field name="name">Netsurf Product Extension</field>
-        <field name="res_model">product.template</field>
-        <field name="view_mode">form</field>
-        Add more fields as necessary, like target, domain, context, etc.
-    </record>
-</odoo> -->
