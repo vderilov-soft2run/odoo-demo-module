@@ -1,6 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_netsurf_product_extension_product_user,netsurf_product_extension.product_template user,product.model_product_template,base.group_user,1,0,0,0
-access_netsurf_product_extension_product_manager,netsurf_product_extension.product_template manager,product.model_product_template,base.group_erp_manager,1,1,1,1
-
-access_netsurf_helpdesk_product_template_manager,netsurf.helpdesk.product_template manager,product.model_product_template,helpdesk.group_helpdesk_manager,1,1,1,1
-access_netsurf_fsm_product_template_manager,netsurf.fsm.product_template manager,product.model_product_template,industry_fsm.group_fsm_manager,1,1,1,1
